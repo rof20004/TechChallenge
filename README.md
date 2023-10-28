@@ -7,7 +7,7 @@ Sistema de autoatendimento para fast-foods.
 O event storm do nosso projeto pode ser acessado pelo seguinte link:
 - https://miro.com/app/board/uXjVMiZyAnE=/
 
-## 💻 Como iniciar a aplicação localmente?
+## 💻 Como INICIAR a aplicação localmente?
 
 Dentro da raíz do projeto execute um dos comandos abaixo.
 
@@ -15,6 +15,10 @@ Dentro da raíz do projeto execute um dos comandos abaixo.
 - Máquinas Windows(via CMD ou PowerShell): `c:\TechChallenge\ start-local-windows.bat`
 
 **Obs.:** caso o comando em máquinas linux ou mac não funcione, execute a seguinte instrução no terminal: `chmod +x start-local-linux.sh`
+
+## 💻 Como PARAR a aplicação localmente?
+
+`docker-compose down`
 
 Após executar o passo acima, acesse o Swagger através: http://127.0.0.1:8080/swagger/index.html ou http://localhost:8080/swagger/index.html.
 
