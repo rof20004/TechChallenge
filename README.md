@@ -28,7 +28,7 @@ Após executar o passo acima, acesse o Swagger através: http://127.0.0.1:8080/s
 - ``MySQL``
 - ``Docker``
 
-## 👨‍💻 Integrandes
+## 👨‍💻 Integrantes
 Edgar Santos,
 Kauan Falcão,
 Leandro,
