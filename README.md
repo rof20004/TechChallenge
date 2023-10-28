@@ -11,8 +11,10 @@ O event storm do nosso projeto pode ser acessado pelo seguinte link:
 
 Dentro da raíz do projeto execute um dos comandos abaixo.
 
-- Máquinas Linux/Mac: `$ ./start-local-linux.sh`
-- Máquinas Windows: `c:\TechChallenge\ start-local-windows.bat` (via CMD ou PowerShell)
+- Máquinas Linux/Mac(terminal/shell): `./start-local-linux.sh`
+- Máquinas Windows(via CMD ou PowerShell): `c:\TechChallenge\ start-local-windows.bat`
+
+**Obs.:** caso o comando em máquinas linux ou mac não funcionem, execute a seguinte instrução no terminal: `chmod +x start-local-linux.sh`
 
 Após executar o passo acima, acesse o Swagger através: http://127.0.0.1:8080/swagger/index.html ou http://localhost:8080/swagger/index.html.
 
