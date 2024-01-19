@@ -20,6 +20,10 @@ namespace TechChallenge.Domain.Entities
         [Display(Name = "Status")]
         public string Status { get; set; }
 
+        [Column("StatusPagamento")]
+        [Display(Name = "StatusPagamento")]
+        public string StatusPagamento { get; set; }
+
         public List<Produto> Produtos { get; set; }
 
         [IgnoreDataMember]

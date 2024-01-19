@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.ComponentModel.DataAnnotations;
 using TechChallenge.Domain.Entities;
+using TechChallenge.Domain.Enums;
 using TechChallenge.Domain.Interfaces.Services;
 
 namespace TechChallenge.Controllers
@@ -102,6 +104,76 @@ namespace TechChallenge.Controllers
                 }
 
                 return Ok(pedido);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Erro: {ex.Message}");
+            }
+        }
+        /// <summary>
+        /// Atualiza o Status do pedido.
+        /// </summary>
+        /// <param name="id">ID do Pedido.</param>
+        /// <param name="status">Status do pedido.</param>
+        /// <remarks>
+        /// Status permitidos para a chamada:
+        ///  Recebido = 1,
+        ///  Preparando = 2,
+        ///  Pronto = 3,
+        ///  Finalizado = 4
+        /// </remarks>
+        [HttpPut("PutStatusPedido")]
+        public async Task<ActionResult<Pedido>> PutStatusPedido(int id, int status)
+        {
+            try
+            {
+                var pedido = await _pedidoService.GetPedido(id);
+
+                if (pedido is null)
+                {
+                    return BadRequest($"Não encontramos o pedido do id {id}.");
+                }
+
+                if(status > 4 || status < 1)
+                {
+                    return BadRequest($"Status não permitido");
+                }
+
+                pedido.Status = Enum.ToObject(typeof(StatusPedidoEnum), status).ToString();
+
+                _pedidoService.PutStatusPedidos(pedido);
+
+                return Ok($"O pedido {pedido.Id} foi atualizado com sucesso para o status {pedido.Status}");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Erro: {ex.Message}");
+            }
+        }
+
+        [HttpPut("GetStatusPagamentoPedido")]
+        public async Task<ActionResult<Pedido>> GetStatusPagamentoPedido(int id)
+        {
+            try
+            {
+                var pedido = await _pedidoService.GetPedido(id);
+
+                if (pedido is null)
+                {
+                    return BadRequest($"Não encontramos o pedido do id {id}.");
+                }
+
+                switch (pedido.StatusPagamento)
+                {
+                    case "Aguardando":
+                        return Ok($"O seu pedido {pedido.Id} esta aguardando o pagamento");
+                    case "EmProcessamento":
+                        return Ok($"O seu pedido {pedido.Id} esta em processamento de pagamento");
+                    case "Pago":
+                        return Ok($"O seu pedido {pedido.Id} foi pago com sucesso");
+                }
+
+                return Ok($"O pedido {pedido.Id} foi atualizado com sucesso para o status {pedido.Status}");
             }
             catch (Exception ex)
             {
