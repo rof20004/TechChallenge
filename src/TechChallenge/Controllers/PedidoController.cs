@@ -151,7 +151,7 @@ namespace TechChallenge.Controllers
             }
         }
 
-        [HttpPut("GetStatusPagamentoPedido")]
+        [HttpGet("GetStatusPagamentoPedido")]
         public async Task<ActionResult<Pedido>> GetStatusPagamentoPedido(int id)
         {
             try
