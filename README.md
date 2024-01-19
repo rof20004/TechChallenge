@@ -28,6 +28,9 @@ Após executar o passo acima, acesse o Swagger através: http://127.0.0.1:8080/s
 #### Pedido
 ###### Endpoint [GET] "/api/v1/pedido/GetAll" : Consulta todos os pedidos
 ###### Endpoint [GET] "/api/v1/pedido/Get" : Consulta o pedido específico através do ID do Pedido. 
+###### Endpoint [PUT] "/api/v1/pedido/PutStatusPedido" : Atualiza o status do pedido Recebido = 1, Preparando = 2, Pronto = 3, Finalizado = 4
+###### Endpoint [GET] "/api/v1/pedido/Get" : Consulta o status do pagamento do pedido. 
+#
 #
 #### Produto
 ###### Endpoint [POST] "/api/v1/produto/Create" : Cria um produto.
