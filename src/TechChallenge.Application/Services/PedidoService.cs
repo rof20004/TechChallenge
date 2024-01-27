@@ -89,7 +89,7 @@ public class PedidoService : IPedidoService
 
     public bool AprovarPedido(Pedido pedido)
     { 
-        if(pedido.Produtos.Count > 4)
+        if(pedido == null)
         {
             return false;
         }

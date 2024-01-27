@@ -179,7 +179,7 @@ namespace TechChallenge.Controllers
             }
         }
 
-        [HttpPost("webhook-pagamento")]
+        [HttpPut("webhook-pagamento")]
         public async Task<ActionResult<Pedido>> WebhookPagamento(int idPedido)
         {
             try
@@ -190,11 +190,11 @@ namespace TechChallenge.Controllers
 
                 if(pedido.StatusPagamento == StatusPagamentoPedidoEnum.Pago.ToString())
                 {
-                    return Ok($"Webhook recebeu a confirmação de pagamento com sucesso o pedido {pedido.Id}!");
+                    return Ok($"Webhook recebeu a confirmação de pagamento com sucesso do pedido {pedido.Id}!");
                 }
                 else
                 {
-                    return Problem($"Webhook recebeu a confirmação de pagamento negado para o pedido {pedido.Id!}",null,StatusCodes.Status402PaymentRequired);
+                    return Problem($"Webhook recebeu a confirmação de pagamento negado para do pedido {pedido.Id!}",null,StatusCodes.Status402PaymentRequired);
                 }
                 
             }
