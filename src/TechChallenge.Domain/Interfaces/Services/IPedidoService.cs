@@ -11,5 +11,7 @@ namespace TechChallenge.Domain.Interfaces.Services
         public Task<int> CreatePedido(string idCliente, List<int> idProdutos);
 
         public void PutStatusPedidos(Pedido entidade);
+
+        public Pedido ProcessarConfirmacaoDePagamento(Pedido entidade);
     }
 }

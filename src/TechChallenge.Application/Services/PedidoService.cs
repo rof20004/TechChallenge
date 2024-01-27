@@ -71,6 +71,34 @@ public class PedidoService : IPedidoService
              .ThenBy(x => x.Id).ToList();
     }
 
+    public Pedido ProcessarConfirmacaoDePagamento(Pedido pedido)
+    {
+
+        if (AprovarPedido(pedido))
+        {
+            pedido.StatusPagamento = StatusPagamentoPedidoEnum.Pago.ToString();
+            PutStatusPedidos(pedido);
+        }
+        else
+        {
+            pedido.StatusPagamento = StatusPagamentoPedidoEnum.Recusado.ToString();
+            PutStatusPedidos(pedido);
+        }
+        return pedido;
+    }
+
+    public bool AprovarPedido(Pedido pedido)
+    { 
+        if(pedido.Produtos.Count > 4)
+        {
+            return false;
+        }
+        else 
+        { 
+            return true; 
+        }
+    }
+
     public void PutStatusPedidos(Pedido entidade)
     {
         _pedidoRepository.PutStatusPedidos(entidade);

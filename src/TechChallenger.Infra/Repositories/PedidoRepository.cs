@@ -81,11 +81,6 @@ namespace TechChallenge.Infra.Repositories
             return pedidos;
         }
 
-        public void PutStatusPagamento(Pedido entidade)
-        {
-            throw new NotImplementedException();
-        }
-
         public void PutStatusPedidos(Pedido entidade)
         {
             _context.Pedidos.Update(entidade);

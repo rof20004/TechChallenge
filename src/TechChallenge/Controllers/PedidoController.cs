@@ -1,6 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.ComponentModel.DataAnnotations;
 using TechChallenge.Domain.Entities;
 using TechChallenge.Domain.Enums;
 using TechChallenge.Domain.Interfaces.Services;
@@ -174,6 +172,31 @@ namespace TechChallenge.Controllers
                 }
 
                 return Ok($"O pedido {pedido.Id} foi atualizado com sucesso para o status {pedido.Status}");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Erro: {ex.Message}");
+            }
+        }
+
+        [HttpPost("webhook-pagamento")]
+        public async Task<ActionResult<Pedido>> WebhookPagamento(int idPedido)
+        {
+            try
+            {
+                var pedido = await _pedidoService.GetPedido(idPedido);
+  
+                pedido = _pedidoService.ProcessarConfirmacaoDePagamento(pedido);
+
+                if(pedido.StatusPagamento == StatusPagamentoPedidoEnum.Pago.ToString())
+                {
+                    return Ok($"Webhook recebeu a confirmação de pagamento com sucesso o pedido {pedido.Id}!");
+                }
+                else
+                {
+                    return Problem($"Webhook recebeu a confirmação de pagamento negado para o pedido {pedido.Id!}",null,StatusCodes.Status402PaymentRequired);
+                }
+                
             }
             catch (Exception ex)
             {

@@ -19,7 +19,8 @@ namespace TechChallenge.Domain.Enums
     { 
         Aguardando = 1,
         EmProcessamento = 2,
-        Pago = 3
+        Pago = 3,
+        Recusado = 4
     }
 }
 
