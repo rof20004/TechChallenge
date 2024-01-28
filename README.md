@@ -13,13 +13,12 @@ Sistema de autoatendimento para fast-foods.
 
 **Obs. 2: O HPA necessita do metrics-server para funcionar corretamente, porém o metrics-server demora um pouco mais de 2 minutos para subir. Se for necessário realizar algum teste de carga é importante lembrar dessa informação.**
 
-### Após tudo pronto, segue os endereços abaixos da API e do Database:
+### Após tudo pronto, segue os endereços da API, Swagger e do Database:
 
 - API: http://localhost:31000
 - Swagger: http://localhost:31000/swagger/index.html
-- Database:
-    hostname: localhost
-    port: 32000
+- Database hostname: localhost
+- Database port: 32000
 
 ## 💡 Event Storm
 
