@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: techchallenge-backend
+spec:
+  selector:
+    matchLabels:
+      app: techchallenge-backend
+  template:
+    metadata:
+      labels:
+        app: techchallenge-backend
+    spec:
+      containers:
+      - name: techchallenge-backend
+        image: rof20004/techchallenge-backend:latest
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
+        env:
+        - name: ASPNETCORE_ENVIRONMENT
+          valueFrom:
+            configMapKeyRef:
+              name: techchallenge-config-maps
+              key: environment
+        - name: MYSQL_DATABASE
+          valueFrom:
+            secretKeyRef:
+              name: techchallenge-secrets
+              key: mysql_database
+        - name: MYSQL_USER
+          valueFrom:
+            secretKeyRef:
+              name: techchallenge-secrets
+              key: mysql_user
+        - name: MYSQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: techchallenge-secrets
+              key: mysql_password
+        - name: ConnectionStrings__DefaultConnection
+          value: "Server=techchallenge-database-service;Port=3306;Database=$(MYSQL_DATABASE);User=$(MYSQL_USER);Password=$(MYSQL_PASSWORD);"
