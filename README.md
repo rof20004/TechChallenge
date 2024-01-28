@@ -2,6 +2,25 @@
 
 Sistema de autoatendimento para fast-foods.
 
+## 🛳️ Como rodar no Kubernetes local
+
+**Obs. 1: os comandos abaixo foram testados em ambientes unix-like. As vezes é necessário aguardar 1 ou 2 minutos para toda a infra do cluster ficar utilizável.**
+
+```bash
+  cd k8s
+  kubectl apply --all -f .
+```
+
+**Obs. 2: O HPA necessita do metrics-server para funcionar corretamente, porém o metrics-server demora um pouco mais de 2 minutos para subir. Se for necessário realizar algum teste de carga é importante lembrar dessa informação.**
+
+### Após tudo pronto, segue os endereços abaixos da API e do Database:
+
+- API: http://localhost:31000
+- Swagger: http://localhost:31000/swagger/index.html
+- Database:
+    hostname: localhost
+    port: 32000
+
 ## 💡 Event Storm
 
 O event storm do nosso projeto pode ser acessado pelo seguinte link:
