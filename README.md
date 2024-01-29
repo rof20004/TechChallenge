@@ -2,6 +2,10 @@
 
 Sistema de autoatendimento para fast-foods.
 
+## 📽️ Video Youtube Arquitetura
+
+https://youtu.be/KOwE_lIzVaw
+
 ## 🛳️ Como rodar no Kubernetes local
 
 **Obs. 1: os comandos abaixo foram testados em ambientes unix-like. As vezes é necessário aguardar 1 ou 2 minutos para toda a infra do cluster ficar utilizável.**
