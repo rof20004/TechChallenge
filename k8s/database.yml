@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: techchallenge-database
+spec:
+  selector:
+    matchLabels:
+      app: techchallenge-database
+  template:
+    metadata:
+      labels:
+        app: techchallenge-database
+    spec:
+      containers:
+      - name: techchallenge-database
+        image: mysql:latest
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "1"
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+        ports:
+        - containerPort: 3306
+        volumeMounts:
+        - name: techchallenge-database-storage
+          mountPath: /var/lib/mysql
+        env:
+        - name: MYSQL_DATABASE
+          valueFrom:
+            secretKeyRef:
+              name: techchallenge-secrets
+              key: mysql_database
+        - name: MYSQL_USER
+          valueFrom:
+            secretKeyRef:
+              name: techchallenge-secrets
+              key: mysql_user
+        - name: MYSQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: techchallenge-secrets
+              key: mysql_password
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: techchallenge-secrets
+              key: mysql_root_password
+      volumes:
+      - name: techchallenge-database-storage
+        persistentVolumeClaim:
+          claimName: techchallenge-database-pvc

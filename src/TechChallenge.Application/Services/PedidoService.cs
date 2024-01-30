@@ -1,6 +1,7 @@
 ﻿using TechChallenge.Domain.Entities;
 using TechChallenge.Domain.Interfaces.Infra;
 using TechChallenge.Domain.Interfaces.Services;
+using TechChallenge.Domain.Enums;
 
 namespace TechChallenge.Application.Services;
 public class PedidoService : IPedidoService
@@ -29,7 +30,7 @@ public class PedidoService : IPedidoService
         {
             return null;
         }
-        
+
 
         foreach (var item in pedido.Produtos)
         {
@@ -52,7 +53,8 @@ public class PedidoService : IPedidoService
 
         foreach (var pedido in pedidos.ToArray())
         {
-            if (pedido.Produtos is null)
+            if (pedido.Produtos.Contains(null)
+                || pedido.Status == StatusPedidoEnum.Finalizado.ToString())
             {
                 pedidos.Remove(pedido);
             }
@@ -65,6 +67,40 @@ public class PedidoService : IPedidoService
             }
         }
 
-        return pedidos;
+        return pedidos.OrderBy(x => x.Status == StatusPedidoEnum.Pronto.ToString() ? 0 : x.Status == StatusPedidoEnum.Preparando.ToString() ? 1 : 2)
+             .ThenBy(x => x.Id).ToList();
+    }
+
+    public Pedido ProcessarConfirmacaoDePagamento(Pedido pedido)
+    {
+
+        if (AprovarPedido(pedido))
+        {
+            pedido.StatusPagamento = StatusPagamentoPedidoEnum.Pago.ToString();
+            PutStatusPedidos(pedido);
+        }
+        else
+        {
+            pedido.StatusPagamento = StatusPagamentoPedidoEnum.Recusado.ToString();
+            PutStatusPedidos(pedido);
+        }
+        return pedido;
+    }
+
+    public bool AprovarPedido(Pedido pedido)
+    { 
+        if(pedido == null)
+        {
+            return false;
+        }
+        else 
+        { 
+            return true; 
+        }
+    }
+
+    public void PutStatusPedidos(Pedido entidade)
+    {
+        _pedidoRepository.PutStatusPedidos(entidade);
     }
 }

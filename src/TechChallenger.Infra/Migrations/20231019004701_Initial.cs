@@ -58,6 +58,8 @@ namespace TechChallenge.Infra.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Status = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
+                    StatusPagamento = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
                     TotalPedido = table.Column<decimal>(type: "decimal(65,30)", nullable: false)
                 },
                 constraints: table =>

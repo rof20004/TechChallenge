@@ -10,5 +10,7 @@ namespace TechChallenge.Domain.Interfaces.Infra
         public Task<int> CreatePedido(string idCliente);
 
         public Task CreatePedidoProduto(int idPedido, List<int> produtos);
+
+        public void PutStatusPedidos(Pedido entidade);
     }
 }

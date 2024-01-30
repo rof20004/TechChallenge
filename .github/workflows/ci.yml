@@ -1,0 +1,19 @@
+name: build-and-push-docker-image
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Build and Push Docker image
+        run: |
+          docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_PASSWORD }}
+          docker buildx build --platform=linux/amd64,linux/arm64,linux/arm/v7 -t ${{ secrets.DOCKER_HUB_USERNAME }}/techchallenge-backend:latest --push .

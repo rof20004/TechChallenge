@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TechChallenge.Domain.Entities;
+using TechChallenge.Domain.Enums;
 using TechChallenge.Domain.Interfaces.Infra;
 using TechChallenge.Infra.Data;
 
@@ -16,7 +17,7 @@ namespace TechChallenge.Infra.Repositories
 
         public async Task<int> CreatePedido(string idCliente)
         {
-            Pedido pedido = new Pedido() { IdCliente = idCliente, Status = "Em Preparo" };
+            Pedido pedido = new Pedido() { IdCliente = idCliente, Status = StatusPedidoEnum.Recebido.ToString(), StatusPagamento = StatusPagamentoPedidoEnum.Aguardando.ToString() };
             _context.Pedidos.Add(pedido);
             await _context.SaveChangesAsync();
             return (await _context.Pedidos.Where(x => x.IdCliente.Equals(idCliente)).OrderByDescending(x => x.Id).FirstAsync()).Id;
@@ -79,5 +80,13 @@ namespace TechChallenge.Infra.Repositories
             }
             return pedidos;
         }
+
+        public void PutStatusPedidos(Pedido entidade)
+        {
+            _context.Pedidos.Update(entidade);
+            _context.SaveChanges();
+        }
+
+
     }
 }
