@@ -6,6 +6,9 @@ Sistema de autoatendimento para fast-foods.
 
 https://youtu.be/KOwE_lIzVaw
 
+![image](https://github.com/rof20004/TechChallenge/assets/67924745/9f358d7d-a9d8-4d7c-ba32-9aa6b8f889ed)
+
+
 ## 🛳️ Como rodar no Kubernetes local
 
 **Obs. 1: os comandos abaixo foram testados em ambientes unix-like. As vezes é necessário aguardar 1 ou 2 minutos para toda a infra do cluster ficar utilizável.**
