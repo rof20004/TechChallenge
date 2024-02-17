@@ -31,5 +31,6 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
+          platforms: linux/amd64,linux/arm64,linux/arm/v7
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/techchallenge-backend:latest
