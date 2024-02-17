@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -30,5 +30,6 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
-          push: "true"
+          context: .
+          push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/techchallenge-backend:latest
