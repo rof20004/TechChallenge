@@ -19,6 +19,7 @@ namespace TechChallenge.Controllers
         /// <param cpf="cpf"></param>
         /// <returns></returns>
         [HttpGet("{cpf}")]
+        [Microsoft.AspNetCore.Authorization.Authorize]
         public async Task<ActionResult<Cliente>> GetCliente(string cpf)
         {
             try

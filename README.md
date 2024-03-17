@@ -8,6 +8,16 @@ https://youtu.be/KOwE_lIzVaw
 
 ![image](https://github.com/rof20004/TechChallenge/assets/67924745/9f358d7d-a9d8-4d7c-ba32-9aa6b8f889ed)
 
+# Lambda de Autenticação 
+https://github.com/kauanF7/lambda
+
+Vídeo Explicativo: https://www.youtube.com/watch?v=W_S5j6gb9Ks
+
+# Terraform RDS
+https://github.com/kauanF7/rds-terraform
+
+# Terraform EKS
+https://github.com/kauanF7/eks-terraform
 
 ## 🛳️ Como rodar no Kubernetes local
 

@@ -20,6 +20,7 @@ namespace TechChallenge.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost("Create")]
+        [Microsoft.AspNetCore.Authorization.Authorize]
         public async Task<ActionResult<int>> CreatePedidoCliente([FromBody] List<int> idProdutos, string idCliente)
         {
             try
