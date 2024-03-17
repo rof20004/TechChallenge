@@ -19,6 +19,12 @@ https://github.com/kauanF7/rds-terraform
 # Terraform EKS
 https://github.com/kauanF7/eks-terraform
 
+# Relacionamento Banco de Dados (MySql)
+![image](https://github.com/rof20004/TechChallenge/assets/40708971/1d7f3ac9-aad6-4b6d-8272-b5328d933747)
+
+O MySQL é como o velho e confiável parceiro de banco de dados. Ele é fácil de usar, funciona bem com uma tonelada de aplicativos diferentes e é robusto o suficiente para lidar com cargas de trabalho pesadas.
+
+
 ## 🛳️ Como rodar no Kubernetes local
 
 **Obs. 1: os comandos abaixo foram testados em ambientes unix-like. As vezes é necessário aguardar 1 ou 2 minutos para toda a infra do cluster ficar utilizável.**
