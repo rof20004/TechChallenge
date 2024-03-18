@@ -4,6 +4,10 @@ using TechChallenge.Domain.Interfaces.Services;
 using TechChallenge.Domain.Interfaces.Infra;
 using TechChallenge.Infra.Repositories;
 using TechChallenge.Infra.Data;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using System.Text.RegularExpressions;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace TechChallenge
 {
@@ -23,6 +27,29 @@ namespace TechChallenge
                                               {
                                                   mySqlOptions.EnableRetryOnFailure(5, TimeSpan.FromSeconds(10), null);
                                               }));
+
+            builder.Services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+
+                    ValidIssuer = "TechChallengerIssuer",
+                    ValidAudience = "TechChallengerAudience",
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("privateKeyTechChallenger Grupo 4SOAT")),
+                    ClockSkew = TimeSpan.Zero
+                };
+            }
+            
+            );
+
             builder.Services.AddScoped<IClienteService, ClienteService>();
             builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
             builder.Services.AddScoped<IProdutoService, ProdutoService>();
@@ -50,6 +77,7 @@ namespace TechChallenge
 
             app.UseHttpsRedirection();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
 

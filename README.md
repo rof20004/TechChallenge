@@ -8,6 +8,23 @@ https://youtu.be/KOwE_lIzVaw
 
 ![image](https://github.com/rof20004/TechChallenge/assets/67924745/9f358d7d-a9d8-4d7c-ba32-9aa6b8f889ed)
 
+# Lambda de Autenticação 
+https://github.com/kauanF7/lambda
+
+Vídeo Explicativo: https://www.youtube.com/watch?v=W_S5j6gb9Ks
+
+# Terraform RDS
+https://github.com/kauanF7/rds-terraform
+
+# Terraform EKS
+https://github.com/kauanF7/eks-terraform
+
+# Relacionamento Banco de Dados (MySql)
+![image](https://github.com/rof20004/TechChallenge/assets/40708971/1d7f3ac9-aad6-4b6d-8272-b5328d933747)
+
+Conforme o entregável 1 e 2, a escolha do banco de dados era individual por grupo.
+Optamos por usar um banco de dados relacional (MySql), devido à familiaridade dos integrantes em utilizar essa tecnologia e pela necessidade dos relacionamentos que era solicitado. Além disso, o MySql é um banco de dados muito performático. 
+
 
 ## 🛳️ Como rodar no Kubernetes local
 
