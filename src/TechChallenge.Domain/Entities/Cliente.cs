@@ -22,5 +22,13 @@ namespace TechChallenge.Domain.Entities
         [Column("email")]
         [Display(Name = "email")]
         public string Email { get; set; }
+
+        [Column("telefone")]
+        [Display(Name = "telefone")]
+        public string Telefone { get; set; }
+
+        [Column("endereco")]
+        [Display(Name = "endereco")]
+        public string Endereco { get; set; }
     }
 }

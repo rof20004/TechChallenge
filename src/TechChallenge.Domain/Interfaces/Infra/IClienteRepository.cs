@@ -7,5 +7,7 @@ namespace TechChallenge.Domain.Interfaces.Infra
         public Task<Cliente> GetCliente(string cpf);
         public Task CreateCliente(Cliente cliente);
         public Task<bool> ExistCliente(string cpf);
+
+        public string DeleteCliente(Cliente cpf);
     }
 }
