@@ -44,7 +44,7 @@ namespace TechChallenge.Controllers
         /// <param cpf="cpf"></param>
         /// <returns></returns>
         [HttpPost("{cpf}")]
-        public async Task<ActionResult<int>> CreateCliente(string cpf, string email, string nome)
+        public async Task<ActionResult<int>> CreateCliente(string cpf, string email, string nome, string telefone, string endereco)
         {
             try
             {
@@ -53,7 +53,7 @@ namespace TechChallenge.Controllers
                     return BadRequest("CPF deve ser obrigatório");
                 }
 
-                var idCliente = await _clienteService.CreateCliente(cpf, email, nome);
+                var idCliente = await _clienteService.CreateCliente(cpf, email, nome, telefone, endereco);
 
                 if (idCliente != 0)
                 {
@@ -66,6 +66,33 @@ namespace TechChallenge.Controllers
             }
 
             return BadRequest($"O CPF {cpf} já esta cadastrado.");
+        }
+
+        [HttpDelete("{cpf}")]
+        public async Task<ActionResult<int>> DeleteCliente(string cpf)
+        {
+            try
+            {
+                if (cpf is null)
+                {
+                    return BadRequest("CPF deve ser obrigatório para exclusão do usuario");
+                }
+
+                var cliente = await _clienteService.GetCliente(cpf);
+
+                var idCliente = _clienteService.DeleteCliente(cliente);
+
+                if (idCliente != null)
+                {
+                    return Ok($"{idCliente}");
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Erro: {ex.Message}");
+            }
+
+            return BadRequest($"Não foi possivel realizar a exclusão do seu usuario");
         }
     }
 }

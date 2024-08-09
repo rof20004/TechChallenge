@@ -12,7 +12,7 @@ public class ClienteService : IClienteService
         _clienteRepository = clienteRepository;
     }
 
-    public async Task<int> CreateCliente(string cpf, string email, string nome)
+    public async Task<int> CreateCliente(string cpf, string email, string nome, string telefone, string endereco)
     {
         if (await _clienteRepository.ExistCliente(cpf))
         {
@@ -23,7 +23,9 @@ public class ClienteService : IClienteService
         {
             CPF = cpf,
             Email = email,
-            Nome = nome
+            Nome = nome,
+            Telefone = telefone,
+            Endereco = endereco    
         };
 
         await _clienteRepository.CreateCliente(cliente);
@@ -34,5 +36,10 @@ public class ClienteService : IClienteService
     public async Task<Cliente> GetCliente(string cpf)
     {
         return await _clienteRepository.GetCliente(cpf);
+    }
+
+    public string DeleteCliente(Cliente cliente)
+    {
+        return _clienteRepository.DeleteCliente(cliente);
     }
 }

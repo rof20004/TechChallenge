@@ -20,6 +20,13 @@ namespace TechChallenge.Infra.Repositories
             await _context.SaveChangesAsync();
         }
 
+        public string DeleteCliente(Cliente cliente)
+        {
+            _context.Cliente.Remove(cliente);
+            _context.SaveChanges();
+            return "Exclusão com sucesso";
+        }
+
         public async Task<bool> ExistCliente(string cpf)
         {
             return await _context.Cliente.AnyAsync(x => x.CPF.Equals(cpf));

@@ -52,10 +52,6 @@ namespace TechChallenge
 
             builder.Services.AddScoped<IClienteService, ClienteService>();
             builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
-            builder.Services.AddScoped<IProdutoService, ProdutoService>();
-            builder.Services.AddScoped<IProdutoRepository, ProdutoRepository>();
-            builder.Services.AddScoped<IPedidoService, PedidoService>();
-            builder.Services.AddScoped<IPedidoRepository, PedidoRepository>();
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
